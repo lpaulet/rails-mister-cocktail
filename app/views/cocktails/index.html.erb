@@ -1,21 +1,37 @@
-<h1>Our Cocktails</h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://static1.squarespace.com/static/56ced9fdf8baf3fe56ca1cc8/t/56cf128960b5e9b9f289844b/1456411283301/cocktail-banner-5.jpg?format=1500w);">
+  <div class="container">
+    <h1>Le Wagon brings <strong>drinking skills</strong> to <strong>creative people</strong>!</h1>
+    <p>Change your life and learn to drink at one of our campuses around the world.</p>
+    <div class="button">
+      <p><%= link_to 'New Cocktail', new_cocktail_path, class: "btn btn-light" %></p>
+    </div>
+  </div>
+</div>
 
-<table>
+<div class="cards">
+  <% @cocktails.each do |cocktail| %>
+  <%= link_to cocktail_path(cocktail) do %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>')">
+        <h2><%= cocktail.name %></h2>
+      </div>
+  <% end %>
+  <% end %>
+</div>
 
-  <tbody>
-    <% @cocktails.each do |cocktail| %>
-      <tr>
-        <td><%= cocktail.name %></td>
-        <%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
-        <td><%= link_to 'Show', cocktail %></td>
-        <td><%= link_to 'Edit', edit_cocktail_path(cocktail) %></td>
-        <td><%= link_to 'Destroy', cocktail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="button-bottom">
+  <%= link_to 'Add a new cocktail', new_cocktail_path, class: "btn btn-secondary" %>
+</div>
 
-<br>
 
-<%= link_to 'New Cocktail', new_cocktail_path %>
+
+
+
+
+
+
+
+
+
+
+
 
